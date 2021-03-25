@@ -42,21 +42,13 @@ class LINE(Auth, Models, Talk, Square, Call, Timeline, Liff, Shop, E2EE):
         self.customThrift = kwargs.pop('customThrift', False)
         self.ignoreSquare = kwargs.pop('ignoreSquare', True)
         self.e2ee = kwargs.pop('e2ee', False)
-        callback = kwargs.pop('callback', None)
-        if self.e2ee:
-            self._e2ee = E2EE()
-        else:
-            self._e2ee = None
-        Auth.__init__(self)
-        if callback and callable(callback):
-            self.callback = Callback(callback)
-        if not (idOrAuthToken or idOrAuthToken and passwd):
-            self.loginWithQrCode()
-        if idOrAuthToken and passwd:
-            self.loginWithCredential(idOrAuthToken, passwd)
-        elif idOrAuthToken and not passwd:
-            self.loginWithAuthToken(idOrAuthToken)
-        self.__initAll()
+        from login import QRLogin
+
+qr = QRLogin()
+
+result = qr.loginWithQrCode("lite")
+print("Access Token: " + result.accessToken)
+print("Certificate: " + result.certificate)
 
     def __initAll(self):
 
