@@ -53,7 +53,7 @@ enesbyrkPoll = OEPoll(enesbyrk)
 enesbyrkMID = enesbyrk.getProfile().mid
 #=====================================================================
 loop = asyncio.get_event_loop()
-myAdmin = ["u0a2394509afc4f92b88b4ab598f0cf05"]
+myAdmin = ["u0dedae6e6ff204f52f2e4a096630ea82"]
 botStart = time.time()
 msg_dict = {}
 temp_flood = {}
